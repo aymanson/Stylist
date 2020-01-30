@@ -34,6 +34,7 @@ extension UIView {
 
     @objc func stylist_didMoveToSuperview() {
         stylist_didMoveToSuperview()
+        print("Assign \(self) to superview \(self.superview)")
         Stylist.shared.style(self)
     }
 }
