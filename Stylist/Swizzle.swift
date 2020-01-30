@@ -34,6 +34,7 @@ extension UIView {
 
     @objc func stylist_willMove(toSuperview: UIView?) {
         stylist_willMove(toSuperview: toSuperview)
+        print("Component will Move \(self) with superview \(toSuperview)")
         if toSuperview != nil {
             Stylist.shared.style(self)
         }
