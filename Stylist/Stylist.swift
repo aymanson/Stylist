@@ -124,7 +124,6 @@ public class Stylist {
             styleables.append(WeakContainer(styleable))
         }
         for style in styles {
-            print("Check canApply style \(style)")
             guard style.applies(to: styleable) else { continue }
             print("ApplyStyle \(style)")
             apply(style: style.style, to: styleable)
