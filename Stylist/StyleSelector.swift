@@ -37,8 +37,9 @@ public class StyleSelector: Equatable, CustomStringConvertible {
         var components = self.components
         if let component = components.popLast() {
             if matches(component: component, to: styleable) {
+                print("Match selector for component \(component) against object \(styleable)")
                 if !components.isEmpty {
-                    print("Selector Matches \(components) to \(styleable)")
+                    print("--- Try matching remaining \(components) with parent of \(styleable) evaluate \(matches(components: components, to: styleable))")
                     return matches(components: components, to: styleable)
                 } else {
                     // a single level
@@ -54,11 +55,9 @@ public class StyleSelector: Equatable, CustomStringConvertible {
         if let classType = component.classType,
             let object = styleable as? NSObject,
             !(object.isKind(of: classType)) {
-            print("ClassType not match for \(classType)")
             return false
         }
         if let style = component.style, !styleable.styles.contains(style) {
-            print("Style assigned not match")
             return false
         }
         return true
@@ -68,9 +67,10 @@ public class StyleSelector: Equatable, CustomStringConvertible {
         var components = components
         if let component = components.popLast() {
             if let parent = getParent(styleable: styleable, component: component) {
-                print("Selector Matches \(components) to \(parent) evaluate \(matches(components: components, to: parent))")
+                print("------ Selector Matches \(components) to \(parent) evaluate \(matches(components: components, to: parent))")
                 return matches(components: components, to: parent)
             } else {
+                print("------ No Parent Found")
                 return false
             }
         } else {
@@ -82,6 +82,7 @@ public class StyleSelector: Equatable, CustomStringConvertible {
 
         if let viewController = styleable as? UIViewController {
             if let parent = viewController.parent {
+                print("Checking Parent \(parent)")
                 if matches(component: component, to: parent) {
                     return parent
                 } else {
