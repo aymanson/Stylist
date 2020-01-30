@@ -24,8 +24,8 @@ extension UIView {
 
         if self !== UIView.self { return }
 
-        let originalSelector = #selector(didMoveToSuperview())
-        let swizzledSelector = #selector(stylist_didMoveToSuperview())
+        let originalSelector = #selector(didMoveToSuperview)
+        let swizzledSelector = #selector(stylist_didMoveToSuperview)
 
         let originalMethod = class_getInstanceMethod(UIView.self, originalSelector)
         let swizzledMethod = class_getInstanceMethod(UIView.self, swizzledSelector)
