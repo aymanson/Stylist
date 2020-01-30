@@ -123,11 +123,11 @@ public class Stylist {
         if !styleables.contains(where: { $0.value === styleable}) {
             styleables.append(WeakContainer(styleable))
         }
-        print("Applying style to \(styleable)...")
+        print("======= Applying style to \(styleable)...")
         for style in styles {
-            print("Check can apply style using style \(style)")
+            print("Check canApply style \(style)")
             guard style.applies(to: styleable) else { continue }
-            print("Apply style \(style)")
+            print("ApplyStyle \(style)")
             apply(style: style.style, to: styleable)
         }
     }

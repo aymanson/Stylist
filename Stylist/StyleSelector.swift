@@ -38,6 +38,7 @@ public class StyleSelector: Equatable, CustomStringConvertible {
         if let component = components.popLast() {
             if matches(component: component, to: styleable) {
                 if !components.isEmpty {
+                    print("Selector Matches \(components) to \(styleable)")
                     return matches(components: components, to: styleable)
                 } else {
                     // a single level
@@ -65,6 +66,7 @@ public class StyleSelector: Equatable, CustomStringConvertible {
         var components = components
         if let component = components.popLast() {
             if let parent = getParent(styleable: styleable, component: component) {
+                print("Selector Matches \(components) to \(parent)")
                 return matches(components: components, to: parent)
             } else {
                 return false
