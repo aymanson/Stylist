@@ -54,9 +54,11 @@ public class StyleSelector: Equatable, CustomStringConvertible {
         if let classType = component.classType,
             let object = styleable as? NSObject,
             !(object.isKind(of: classType)) {
+            print("ClassType not match for \(classType)")
             return false
         }
         if let style = component.style, !styleable.styles.contains(style) {
+            print("Style assigned not match")
             return false
         }
         return true
@@ -66,7 +68,7 @@ public class StyleSelector: Equatable, CustomStringConvertible {
         var components = components
         if let component = components.popLast() {
             if let parent = getParent(styleable: styleable, component: component) {
-                print("Selector Matches \(components) to \(parent)")
+                print("Selector Matches \(components) to \(parent) evaluate \(matches(components: components, to: parent))")
                 return matches(components: components, to: parent)
             } else {
                 return false
