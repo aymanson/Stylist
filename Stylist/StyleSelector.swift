@@ -90,9 +90,9 @@ public class StyleSelector: Equatable, CustomStringConvertible {
                 }
             }
         } else if let view = styleable as? UIView {
+            print("Checking parent view \(view.next)")
             if let nextResponder = view.next,
                 let parentStyleable = nextResponder as? Styleable {
-                print("Checking parent view \(parentStyleable)")
                 if matches(component: component, to: parentStyleable) {
                     return parentStyleable
                 } else {
